@@ -4,3 +4,57 @@
   font-family: "Mukta", sans-serif;
   font-family: "Secular One", sans-serif;
 }
+.ext-forc{
+  margin-top: 3rem;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+}
+.spec-search-container{
+display:flex;
+justify-content: flex-end;
+flex-wrap: wrap;
+flex-direction: column ;
+width: 100%;
+gap: .2em;
+
+
+}
+
+.city-quick-select{
+display:flex;
+margin-top: .5em;
+justify-content: flex-start;
+align-items: flex-start;
+flex-direction: column;
+gap: 5px;
+
+}
+
+.city-info{
+  display:flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 5px;
+
+}
+.city-data{
+  display:flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 5px;
+
+}
+.mid-container{
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+
+}
