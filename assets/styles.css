@@ -4,16 +4,14 @@
   font-family: "Mukta", sans-serif;
   font-family: "Secular One", sans-serif;
 }
-.ext-forc{
-  margin-top: 3rem;
+.page-title{
   display:flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-
+  justify-content:center;
+  align-items:center;
+  
 }
+
+
 .spec-search-container{
 display:flex;
 justify-content: flex-end;
@@ -29,9 +27,10 @@ gap: .2em;
 display:flex;
 margin-top: .5em;
 justify-content: flex-start;
-align-items: flex-start;
+align-items: center;
 flex-direction: column;
 gap: 5px;
+width: 100%;
 
 }
 
@@ -51,10 +50,39 @@ gap: 5px;
   gap: 5px;
 
 }
+
+.ext-forc{
+  margin-top: 3rem;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: .2em;
+
+}
 .mid-container{
   display:flex;
   justify-content: flex-start;
   align-items: center;
   gap: 5px;
 
+}
+
+.card-style1, .card-style2, .card-style3, .card-style4, .card-style5 {
+  display: flex;
+  margin: auto;
+  flex-wrap:wrap; 
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  max-height: 100%;
+  height: 300px;
+  width: 150px;
+  background-color: white;
+  padding: 3px;
+  box-shadow: 1px 0px 15px 9px grey;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  transition: 0.4s;
 }
