@@ -55,9 +55,10 @@ function getWeatherData(latitude,longitude) {
 // get weather data temp, wind, humidity, and UV index and their values. display for current searched by user.
 // ICON FOR CURRENT <img src = "https://openweathermap.org/img/wn/"icon@2x.png" alt = "Weather-icon" class = "weather-icon">
 function showWeatherData(data) {
-  let { temp, feels_like, wind_speed, humidity, uvi, weather } = data.current;
-  // let icon = data.weather[0].icon;
+  let { temp, feels_like, wind_speed, humidity, uvi } = data.current;
+  let icon = data.current.weather[0].icon;
   heroData.innerHTML = `<div class="city-data" id="hero-data">
+  <img src= "https://openweathermap.org/img/wn/${icon}.png" alt = "Weather-icon" class = "weather-icon">
      <p> Temperature: ${temp} °F <br>
      Temperature Feels Like: ${feels_like}°F <br>
      Pressure: ${wind_speed}<br>
@@ -69,16 +70,17 @@ function showWeatherData(data) {
 
 //-----EXTENDED FORECAST -----
 //get 5 day forecast weather. Temp, Wind speed in MPH, Humidity %
- //<img src = "http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt = "Weather-icon" class = "weather-icon">
+ //
 let extendedForecast = "";
 function showExtendedWeatherData(data) {
   for (let i = 0; i < 5; i++) {
-    let { temp, wind_speed, humidity, feels_like, day } = data.daily[i];
+    let { temp, wind_speed, humidity, feels_like } = data.daily[i];
+    let extIcon= data.daily[i].weather[0].icon;
     console.log(extendedForecast);
     if (i == 0) {
       weatherCard.innerHTML = `
     <div class="card-style" id="weather-card">
-   
+    <img src = "http://openweathermap.org/img/wn/${extIcon}.png" alt = "Weather-icon" class = "weather-icon">
       <p>
       Temperature: ${temp.day}°F <br>
       Temperature Feels Like: ${feels_like.day}°F <br>
@@ -90,6 +92,7 @@ function showExtendedWeatherData(data) {
     } else {
       weatherCard.innerHTML += `
   <div class="card-style" id="weather-card">
+  <img src = "http://openweathermap.org/img/wn/${extIcon}.png" alt = "Weather-icon" class = "weather-icon">
     <p>
     Temperature: ${temp.day}°F <br>
     Temperature Feels Like: ${feels_like.day}°F <br>
