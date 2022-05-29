@@ -3,8 +3,7 @@
 let searchBtn = document.getElementById("search-btn");
 let userSearch = document.getElementById("typed-search");
 let heroData = document.getElementById("hero-data");
-let weatherCardOne = document.getElementById("weath-car1");
-
+let weatherCard = document.getElementById("weath-car1");
 
 searchBtn.addEventListener("click", () => {
   getCurrentWeather();
@@ -35,7 +34,7 @@ function getCurrentWeather() {
 getWeatherData();
 function getWeatherData() {
   navigator.geolocation.getCurrentPosition((success) => {
-    console.log('success');
+    console.log("success");
 
     let { latitude, longitude } = success.coords;
 
@@ -46,52 +45,55 @@ function getWeatherData() {
       .then((data) => {
         console.log(data);
         showWeatherData(data);
-        
+        showExtendedWeatherData(data);
       });
   });
 }
 
 function showWeatherData(data) {
-  let { temp, wind_speed, humidity, uvi } = data.current;
+  let { temp, wind_speed, humidity, uvi} = data.current;
   heroData.innerHTML = `<div class="city-data" id="hero-data">
 
-     <p> Temperature: ${temp} <br>
+     <p> Temperature: ${temp} °F <br>
      Pressure: ${wind_speed}<br>
-      Humidity: ${humidity}<br>
-      UV Index: ${uvi} 
+      Humidity: ${humidity}%<br>
       </p>      
 </div>`;
 
-let extendedForecast = ''
-  data.daily.forEach((day, i) => {
-  if(i == 0){
-    extendedForecast += `
+}
+
+function showExtendedWeatherData(data) {
+  let { temp, wind_speed, humidity} = data.daily;
+  let extendedForecast = "";
+
+  for (let i = 0; i < 6; i++) {
+    extendedForecast += data.daily[i];
+    console.log(extendedForecast);
+
+    if (i == 0) {
+      extendedForecast += `
     <div class="card-style1" id="weath-car1">
       <p>
-      Temperature: ${day.temp.day}°F <br>
+      Temperature: ${temp}°F <br>
       Pressure: ${wind_speed}<br>
        Humidity: ${humidity}%<br>
-       UV Index: ${uvi} 
       </p>
     </div>
   `;
-
-  }else{
-
-  extendedForecast += `
+    } else {
+      extendedForecast += `
   <div class="card-style1" id="weath-car1">
     <p>
-    Temperature: ${day.temp.day}°F <br>
+    Temperature: ${temp}°F <br>
     Pressure: ${wind_speed}<br>
      Humidity: ${humidity}%<br>
-     UV Index: ${uvi} 
+
     </p>
   </div>
 `;
-  weatherCardOne.innerHTML = extendedForecast
-
-}
-})
+      weatherCard.innerHTML = extendedForecast;
+    }
+  }
 }
 // function getZipWeatherForecast() {
 //   // _____fetch API_____
@@ -149,13 +151,8 @@ let extendedForecast = ''
 //-----EXTENDED FORECAST -----
 //get 5 day forecast weather. Temp, Wind speed in MPH, Humidity %
 
-
-
-
-
 //-----QUICK SEARCH -----
 //Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
-
 
 //Append list of previously searched cities
 // fetch('people.json')
