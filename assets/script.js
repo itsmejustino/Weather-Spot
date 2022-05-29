@@ -1,7 +1,6 @@
-
 //----!IMPORTANT KEY AND FETCH URL!----
 let apiKey = "47659c28e771d77dde5b14c321e29f33";
-let fetchURL = "https://api.openweathermap.org/data/2.5/"
+let fetchURL = "https://api.openweathermap.org/data/2.5/";
 
 //button, input area, and data containers
 let searchBtn = document.getElementById("search-btn");
@@ -15,46 +14,36 @@ searchBtn.addEventListener("click", () => {
   let cityValue = userSearch.value;
   localStorage.setItem("city", cityValue);
 
-  showSearchedWeather() ;
+  showSearchedWeather();
 });
 
-function showSearchedWeather() {
-// _____fetch API_____
-  fetch(
-    `${fetchURL}weather?q=${userSearch.value}&appid=${apiKey}`
-  )
+showSearchedWeather = () => {
+  // _____fetch API_____
+  fetch(`${fetchURL}weather?q=${userSearch.value}&appid=${apiKey}`)
     .then((response) => response.json())
 
     .then((data) => {
       console.log(data.coord.lat, data.coord.lon);
-      getWeatherData(data.coord.lat, data.coord.lon)
-    } );
- 
-}
+      getWeatherData(data.coord.lat, data.coord.lon);
+    });
+};
 
-function getWeatherData(latitude,longitude) {
-
-  // navigator.geolocation.getCurrentPosition((success) => {
-  //   console.log(success);
-
-  //   let { latitude, longitude } = success.coords;
-
-    fetch(
-      `${fetchURL}onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=imperial&appid=${apiKey}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        showWeatherData(data);
-        showExtendedWeatherData(data);
-      });
-    }
+getWeatherData = (latitude, longitude) => {
+  fetch(
+    `${fetchURL}onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=imperial&appid=${apiKey}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      showWeatherData(data);
+      showExtendedWeatherData(data);
+    });
+};
 
 //-----HERO WEATHER -----
 //display City and current Date location with icon
 // get weather data temp, wind, humidity, and UV index and their values. display for current searched by user.
-// ICON FOR CURRENT <img src = "https://openweathermap.org/img/wn/"icon@2x.png" alt = "Weather-icon" class = "weather-icon">
-function showWeatherData(data) {
+showWeatherData = (data) => {
   let { temp, feels_like, wind_speed, humidity, uvi } = data.current;
   let icon = data.current.weather[0].icon;
   heroData.innerHTML = `<div class="city-data" id="hero-data">
@@ -66,16 +55,15 @@ function showWeatherData(data) {
       UV Index: ${uvi}
       </p>      
 </div>`;
-}
+};
 
 //-----EXTENDED FORECAST -----
 //get 5 day forecast weather. Temp, Wind speed in MPH, Humidity %
- //
 let extendedForecast = "";
-function showExtendedWeatherData(data) {
+showExtendedWeatherData = (data) => {
   for (let i = 0; i < 5; i++) {
     let { temp, wind_speed, humidity, feels_like } = data.daily[i];
-    let extIcon= data.daily[i].weather[0].icon;
+    let extIcon = data.daily[i].weather[0].icon;
     console.log(extendedForecast);
     if (i == 0) {
       weatherCard.innerHTML = `
@@ -104,7 +92,10 @@ function showExtendedWeatherData(data) {
 `;
     }
   }
-}
+};
+
+// if searched item in local storage then pass city param into userSearch function and call userSearch
+
 
 //-----QUICK SEARCH -----
 //Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
