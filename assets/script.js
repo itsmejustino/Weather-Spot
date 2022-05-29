@@ -18,14 +18,24 @@ searchBtn.addEventListener("click", () => {
 });
 
 showSearchedWeather = () => {
-  // _____fetch API_____
-  fetch(`${fetchURL}weather?q=${userSearch.value}&appid=${apiKey}`)
+  if( typeof userSearch.value === "string"){
+    fetch(`${fetchURL}weather?q=${userSearch.value}&appid=${apiKey}`)
     .then((response) => response.json())
 
     .then((data) => {
       console.log(data.coord.lat, data.coord.lon);
       getWeatherData(data.coord.lat, data.coord.lon);
     });
+  }else if(typeof userSearch.value === "number"){
+  // _____fetch API_____
+  fetch(`${fetchURL}weather?zip=${userSearch.value},us&appid=${apiKey}`)
+    .then((response) => response.json())
+
+    .then((data) => {
+      console.log(data.coord.lat, data.coord.lon);
+      getWeatherData(data.coord.lat, data.coord.lon);
+    });
+  }
 };
 
 getWeatherData = (latitude, longitude) => {
@@ -46,7 +56,12 @@ getWeatherData = (latitude, longitude) => {
 showWeatherData = (data) => {
   let { temp, feels_like, wind_speed, humidity, uvi } = data.current;
   let icon = data.current.weather[0].icon;
+  let timeStamp = data.current.dt;
+  let dayValue = moment.unix(timeStamp).format("ddd. MMM D")
+  console.log(dayValue);
   heroData.innerHTML = `<div class="city-data" id="hero-data">
+
+  <h1>Current Weather in ${userSearch.value}, ${dayValue}</h1>
   <img src= "https://openweathermap.org/img/wn/${icon}.png" alt = "Weather-icon" class = "weather-icon">
      <p> Temperature: ${temp} °F <br>
      Temperature Feels Like: ${feels_like}°F <br>
@@ -64,10 +79,12 @@ showExtendedWeatherData = (data) => {
   for (let i = 0; i < 5; i++) {
     let { temp, wind_speed, humidity, feels_like } = data.daily[i];
     let extIcon = data.daily[i].weather[0].icon;
+    let futureTimeStamp = moment.unix(data.daily[i].dt).format("ddd. MMMM D");
     console.log(extendedForecast);
     if (i == 0) {
       weatherCard.innerHTML = `
     <div class="card-style" id="weather-card">
+    <h2>${futureTimeStamp}</h2>
     <img src = "http://openweathermap.org/img/wn/${extIcon}.png" alt = "Weather-icon" class = "weather-icon">
       <p>
       Temperature: ${temp.day}°F <br>
@@ -79,7 +96,8 @@ showExtendedWeatherData = (data) => {
   `;
     } else {
       weatherCard.innerHTML += `
-  <div class="card-style" id="weather-card">
+  <div class="card-style" id="weather-card" >
+  <h2>${futureTimeStamp}</h2>
   <img src = "http://openweathermap.org/img/wn/${extIcon}.png" alt = "Weather-icon" class = "weather-icon">
     <p>
     Temperature: ${temp.day}°F <br>
