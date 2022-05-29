@@ -4,6 +4,9 @@
   font-family: "Mukta", sans-serif;
   font-family: "Secular One", sans-serif;
 }
+body{
+  background-color: rgba(129, 179, 162, 0.682);
+}
 .page-title{
   display:flex;
   justify-content:center;
@@ -40,7 +43,8 @@ width: 100%;
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
-  gap: 5px;
+  margin: 2em;
+  gap: 3em;
 
 }
 .city-data{
@@ -70,18 +74,21 @@ width: 100%;
 
 }
 
-.card-style1 {
+.card-style {
   display: flex;
   margin: auto;
   flex-wrap:wrap; 
   justify-content: center;
   align-items: center;
+  gap:.5em;
   max-width: 100%;
   max-height: 100%;
   background-color: white;
   padding: 3px;
   box-shadow: 1px 0px 15px 9px grey;
   border-radius: 15px;
+  margin-top: 15px;
   margin-bottom: 10px;
   transition: 0.4s;
+  background-color: rgba(223, 223, 223, 0.644);
 }
