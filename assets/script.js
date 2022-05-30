@@ -8,23 +8,26 @@ let userSearch = document.getElementById("typed-search");
 let heroData = document.getElementById("hero-data");
 let weatherCard = document.getElementById("weather-card");
 
+
 //storage handling
-let cityStorage = JSON.parse(localStorage.getItem("cityName"));
+let cityStorage = JSON.parse(localStorage.getItem("cityName")) || [];
 
 
 //take user input and match city to query parameter
 //-----SEARCH BAR-----
 //++++++MAIN FUNCTION++++++
 searchBtn.addEventListener("click", () => {
-  appendSearchBtn();
+  stringOrInt(userSearch.value);
   showSearchedWeather();
+  setHistory();
+  clearCard();
+  appendSearchBtn();
+  
 }
 );
 
-//-----QUICK SEARCH -----
-//Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
-//appends search input
-appendSearchBtn = () => {
+function setHistory() {
+
   let cityValue = userSearch.value;
   console.log(cityValue);
   localStorage.setItem("cityName", JSON.stringify(cityValue));
@@ -32,9 +35,15 @@ appendSearchBtn = () => {
     cityStorage.push(cityValue);
     localStorage.setItem("cityName", cityValue);
   }
+}
 
-  for (let i = 0; i < 7; i++) {
-    let searchedCity = cityStorage[i];
+
+//-----QUICK SEARCH -----
+//Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
+//appends search input
+appendSearchBtn = () => {
+  // for (let i = 0; i <= cityValue; i++) {
+    let searchedCity = userSearch.value;
     let searchedItem = document.getElementById("past-searched-items");
     let appendCityBtn = document.createElement("button");
     appendCityBtn.id = "saved-city-btn"
@@ -46,12 +55,25 @@ appendSearchBtn = () => {
       showSearchedWeather();
     })
   }
+
+stringOrInt = (i) => {
+
+let numChar = i.charCodeAt()
+console.log(numChar)
+if(numChar>= 48 && numChar <=57){
+  console.log("int")
+  return false;
+}else{
+  console.log("str")
+  return true;
 }
 
+
+  }
 //checks value of userSearch.value 
 showSearchedWeather = () => {
-
-  if (typeof userSearch.value === "string") {
+  console.log(stringOrInt(userSearch.value))
+  if (stringOrInt(userSearch.value)) {
     fetch(`${fetchURL}weather?q=${userSearch.value}&appid=${apiKey}`)
       .then((response) => response.json())
 
@@ -59,14 +81,18 @@ showSearchedWeather = () => {
         console.log(data.coord.lat, data.coord.lon);
         getWeatherData(data.coord.lat, data.coord.lon);
       });
-  } else if (typeof userSearch.value === "number")
-    fetch(`${fetchURL}weather?zip=${userSearch.value},us&appid=${apiKey}`)
+  } else if(!stringOrInt(userSearch.value)){
+  let stringValue = userSearch.value.toString();
+  
+    fetch(`${fetchURL}weather?zip=${stringValue},us&appid=${apiKey}`)
       .then((response) => response.json())
 
       .then((data) => {
+        console.log(data)
         console.log(data.coord.lat, data.coord.lon);
         getWeatherData(data.coord.lat, data.coord.lon);
       });
+    }
 }
 
 //gets data from using lat long generated from user search by zip or city name
@@ -86,7 +112,9 @@ getWeatherData = (latitude, longitude) => {
 //display City and current Date location with icon
 // get weather data temp, wind, humidity, and UV index and their values. display for current searched by user.
 showWeatherData = (data) => {
-  let { temp, feels_like, wind_speed, humidity, uvi } = data.current;
+  let {temp, feels_like, wind_speed, humidity, uvi} = data.current;
+ 
+  console.log(name);
   let icon = data.current.weather[0].icon;
   let timeStamp = data.current.dt;
   let dayValue = moment.unix(timeStamp).format("ddd. MMM D")
@@ -104,11 +132,27 @@ showWeatherData = (data) => {
 </div>`;
 };
 
+
+let isCardOn = false;
+clearCard = () => {
+  if(isCardOn == true) {
+    let cardClear = document.getElementsByClassName('card-style')
+    console.log(cardClear.length)
+    for (let j = 0; j <= cardClear.length; j++) {
+     cardClear[j].remove();
+     
+    }
+  }
+}
+
 //-----EXTENDED FORECAST -----
 //get 5 day forecast weather. Temp, Wind speed in MPH, Humidity %
+
 let extendedForecast = "";
 showExtendedWeatherData = (data) => {
-  for (let i = 1; i < 6; i++) {
+
+isCardOn = true;
+  for (let i = 0; i < 5; i++) {
     let { temp, wind_speed, humidity, feels_like } = data.daily[i];
     let extIcon = data.daily[i].weather[0].icon;
     let futureTimeStamp = moment.unix(data.daily[i].dt).format("l");
