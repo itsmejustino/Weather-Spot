@@ -21,7 +21,9 @@ searchBtn.addEventListener("click", () => {
   showSearchedWeather();
   setHistory();
   clearCard();
+  clearHero();
   appendSearchBtn();
+  
 
 }
 );
@@ -42,17 +44,19 @@ function setHistory() {
 //Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
 //appends search input
 appendSearchBtn = () => {
-  // for (let i = 0; i <= cityValue; i++) {
   let searchedCity = userSearch.value;
   let searchedItem = document.getElementById("past-searched-items");
   let appendCityBtn = document.createElement("button");
   appendCityBtn.id = "saved-city-btn"
   appendCityBtn.textContent = searchedCity;
   searchedItem.append(appendCityBtn);
-  //  appendCityBtn.style.textTransform = "capitalize";
   appendCityBtn.setAttribute("value", searchedCity);
   appendCityBtn.addEventListener("click", () => {
+    userSearch.value = appendCityBtn.textContent;
+    stringOrInt(searchedCity);
     showSearchedWeather();
+    clearCard();
+    clearHero();
   })
 }
 
@@ -108,10 +112,22 @@ getWeatherData = (latitude, longitude) => {
     });
 };
 
+let isHeroOn = false;
+clearHero = () => {
+  if (isHeroOn == true) {
+    let heroClear = document.getElementsByClassName('city-data')
+    console.log(heroClear.length)
+    for (let j = 0; j <= heroClear.length; j++) {
+      heroClear[j].remove();
+
+    }
+  }
+}
 //-----HERO WEATHER -----
 //display City and current Date location with icon
 // get weather data temp, wind, humidity, and UV index and their values. display for current searched by user.
 showWeatherData = (data) => {
+  isHeroOn == true
   let { temp, feels_like, wind_speed, humidity, uvi } = data.current;
   let icon = data.current.weather[0].icon;
   let timeStamp = data.current.dt;
@@ -142,6 +158,8 @@ clearCard = () => {
     }
   }
 }
+
+
 
 //-----EXTENDED FORECAST -----
 //get 5 day forecast weather. Temp, Wind speed in MPH, Humidity %
