@@ -4,6 +4,15 @@
   font-family: "Mukta", sans-serif;
   font-family: "Secular One", sans-serif;
 }
+#saved-city-btn{
+  margin-left: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
 body {
   background-color: lightgrey;
 }
@@ -34,8 +43,7 @@ body {
 .city-quick-select {
   display: flex;
   margin-top: 0.5em;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 5px;
   width: 100%;
