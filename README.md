@@ -6,7 +6,7 @@ https://itsmejustino.github.io/Weather-Spot/
 
 # Technologies
 
-This app is powered by HTML, CSS, JavaScript, and Fetch API
+This app is powered by HTML, CSS, JavaScript, and Fetch API <br>
 WEB API from https://openweathermap.org/api .
 
 # Demo
