@@ -8,16 +8,48 @@ let userSearch = document.getElementById("typed-search");
 let heroData = document.getElementById("hero-data");
 let weatherCard = document.getElementById("weather-card");
 
+//storage handling
+let cityStorage = JSON.parse(localStorage.getItem("cityName"));
+
+
 //take user input and match city to query parameter
 //-----SEARCH BAR-----
+//++++++MAIN FUNCTION++++++
 searchBtn.addEventListener("click", () => {
-  let cityValue = userSearch.value;
-  localStorage.setItem("city", cityValue);
-
+  appendSearchBtn();
   showSearchedWeather();
-});
+}
+);
 
+//-----QUICK SEARCH -----
+//Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
+//appends search input
+appendSearchBtn  = () => {
+let cityValue = userSearch.value;
+console.log(cityValue);
+localStorage.setItem("cityName",JSON.stringify(cityValue));
+  if (cityStorage.indexOf(cityValue) === 1) {
+    cityStorage.push(cityValue);
+    localStorage.setItem("cityName", cityValue);
+  }
+
+  for (let i= 0; i < 7; i++) {
+     let searchedCity = cityStorage[i];
+     let searchedItem = document.getElementById("past-searched-items");
+     let appendCityBtn = document.createElement("button");
+     appendCityBtn.id = "saved-city-btn"
+     appendCityBtn.textContent = searchedCity;
+     searchedItem.append(appendCityBtn);
+    //  appendCityBtn.style.textTransform = "capitalize";
+     appendCityBtn.setAttribute("value", searchedCity);
+     appendCityBtn.addEventListener("click", () => {
+    showSearchedWeather();
+  })}
+}
+
+//checks value of userSearch.value 
 showSearchedWeather = () => {
+  
   if( typeof userSearch.value === "string"){
     fetch(`${fetchURL}weather?q=${userSearch.value}&appid=${apiKey}`)
     .then((response) => response.json())
@@ -26,8 +58,7 @@ showSearchedWeather = () => {
       console.log(data.coord.lat, data.coord.lon);
       getWeatherData(data.coord.lat, data.coord.lon);
     });
-  }else if(typeof userSearch.value === "number"){
-  // _____fetch API_____
+  }else if(typeof userSearch.value === "number")
   fetch(`${fetchURL}weather?zip=${userSearch.value},us&appid=${apiKey}`)
     .then((response) => response.json())
 
@@ -36,7 +67,7 @@ showSearchedWeather = () => {
       getWeatherData(data.coord.lat, data.coord.lon);
     });
   }
-};
+
 
 getWeatherData = (latitude, longitude) => {
   fetch(
@@ -76,7 +107,7 @@ showWeatherData = (data) => {
 //get 5 day forecast weather. Temp, Wind speed in MPH, Humidity %
 let extendedForecast = "";
 showExtendedWeatherData = (data) => {
-  for (let i = 0; i < 5; i++) {
+  for (let i = 1; i < 6; i++) {
     let { temp, wind_speed, humidity, feels_like } = data.daily[i];
     let extIcon = data.daily[i].weather[0].icon;
     let futureTimeStamp = moment.unix(data.daily[i].dt).format("ddd. MMMM D");
@@ -111,27 +142,3 @@ showExtendedWeatherData = (data) => {
     }
   }
 };
-
-// if searched item in local storage then pass city param into userSearch function and call userSearch
-
-
-//-----QUICK SEARCH -----
-//Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
-
-//Append list of previously searched cities
-// fetch('people.json')
-// .then(function (response) {
-//     return response.json();
-// })
-// .then(function (data) {
-//     appendData(data);
-// })
-// .catch(function (err) {
-//     console.log('error: ' + err);
-// });
-// function appendData(data) {
-// var mainContainer = document.getElementById("myData");
-// for (var i = 0; i < data.length; i++) {
-//     var div = document.createElement("div");
-//     div.innerHTML = 'Name: ' + data[i].firstName + ' ' + data[i].lastName;
-//     mainContainer.appendChild(div)
