@@ -5,7 +5,7 @@
   font-family: "Secular One", sans-serif;
 }
 body {
-  background-color: white;
+  background-color: lightgrey;
 }
 .page-title {
   display: flex;
@@ -71,6 +71,18 @@ body {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  background-color: lightblue;
+  box-shadow: 1px 0px 15px 9px grey;
+  border-radius:15px;
+  width: 250px;
+  margin-right: 10px;
+  margin-left:10px;
+}
+.hero-container {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+
 }
 
 .card-style {
@@ -87,7 +99,7 @@ body {
   margin-top: 15px;
   margin-bottom: 10px;
   transition: 0.4s;
-  background-color: rgba(184, 184, 184, 0.721);
+  background-color: lightsalmon;
 }
 
 .card-container {
