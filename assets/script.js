@@ -69,7 +69,7 @@ showSearchedWeather = () => {
       });
 }
 
-
+//gets data from using lat long generated from user search by zip or city name
 getWeatherData = (latitude, longitude) => {
   fetch(
     `${fetchURL}onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=imperial&appid=${apiKey}`
@@ -111,7 +111,7 @@ showExtendedWeatherData = (data) => {
   for (let i = 1; i < 6; i++) {
     let { temp, wind_speed, humidity, feels_like } = data.daily[i];
     let extIcon = data.daily[i].weather[0].icon;
-    let futureTimeStamp = moment.unix(data.daily[i].dt).format("ddd. MMMM D");
+    let futureTimeStamp = moment.unix(data.daily[i].dt).format("l");
     console.log(extendedForecast);
     if (i == 0) {
       weatherCard.innerHTML = `
