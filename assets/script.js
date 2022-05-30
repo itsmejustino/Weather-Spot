@@ -150,12 +150,12 @@ let extendedForecast = "";
 showExtendedWeatherData = (data) => {
 
   isCardOn = true;
-  for (let i = 0; i < 5; i++) {
+  for (let i = 1; i < 6; i++) {
     let { temp, wind_speed, humidity, feels_like } = data.daily[i];
     let extIcon = data.daily[i].weather[0].icon;
     let futureTimeStamp = moment.unix(data.daily[i].dt).format("l");
     console.log(extendedForecast);
-    if (i == 0) {
+    if (i == 1) {
       weatherCard.innerHTML = `
     <div class="card-style" id="weather-card">
     <h2>${futureTimeStamp}</h2>
