@@ -22,7 +22,7 @@ searchBtn.addEventListener("click", () => {
   setHistory();
   clearCard();
   appendSearchBtn();
-  
+
 }
 );
 
@@ -43,33 +43,33 @@ function setHistory() {
 //appends search input
 appendSearchBtn = () => {
   // for (let i = 0; i <= cityValue; i++) {
-    let searchedCity = userSearch.value;
-    let searchedItem = document.getElementById("past-searched-items");
-    let appendCityBtn = document.createElement("button");
-    appendCityBtn.id = "saved-city-btn"
-    appendCityBtn.textContent = searchedCity;
-    searchedItem.append(appendCityBtn);
-    //  appendCityBtn.style.textTransform = "capitalize";
-    appendCityBtn.setAttribute("value", searchedCity);
-    appendCityBtn.addEventListener("click", () => {
-      showSearchedWeather();
-    })
-  }
+  let searchedCity = userSearch.value;
+  let searchedItem = document.getElementById("past-searched-items");
+  let appendCityBtn = document.createElement("button");
+  appendCityBtn.id = "saved-city-btn"
+  appendCityBtn.textContent = searchedCity;
+  searchedItem.append(appendCityBtn);
+  //  appendCityBtn.style.textTransform = "capitalize";
+  appendCityBtn.setAttribute("value", searchedCity);
+  appendCityBtn.addEventListener("click", () => {
+    showSearchedWeather();
+  })
+}
 
 stringOrInt = (i) => {
 
-let numChar = i.charCodeAt()
-console.log(numChar)
-if(numChar>= 48 && numChar <=57){
-  console.log("int")
-  return false;
-}else{
-  console.log("str")
-  return true;
-}
-
-
+  let numChar = i.charCodeAt()
+  console.log(numChar)
+  if (numChar >= 48 && numChar <= 57) {
+    console.log("int")
+    return false;
+  } else {
+    console.log("str")
+    return true;
   }
+
+
+}
 //checks value of userSearch.value 
 showSearchedWeather = () => {
   console.log(stringOrInt(userSearch.value))
@@ -81,9 +81,9 @@ showSearchedWeather = () => {
         console.log(data.coord.lat, data.coord.lon);
         getWeatherData(data.coord.lat, data.coord.lon);
       });
-  } else if(!stringOrInt(userSearch.value)){
-  let stringValue = userSearch.value.toString();
-  
+  } else if (!stringOrInt(userSearch.value)) {
+    let stringValue = userSearch.value.toString();
+
     fetch(`${fetchURL}weather?zip=${stringValue},us&appid=${apiKey}`)
       .then((response) => response.json())
 
@@ -92,7 +92,7 @@ showSearchedWeather = () => {
         console.log(data.coord.lat, data.coord.lon);
         getWeatherData(data.coord.lat, data.coord.lon);
       });
-    }
+  }
 }
 
 //gets data from using lat long generated from user search by zip or city name
@@ -112,9 +112,7 @@ getWeatherData = (latitude, longitude) => {
 //display City and current Date location with icon
 // get weather data temp, wind, humidity, and UV index and their values. display for current searched by user.
 showWeatherData = (data) => {
-  let {temp, feels_like, wind_speed, humidity, uvi} = data.current;
- 
-  console.log(name);
+  let { temp, feels_like, wind_speed, humidity, uvi } = data.current;
   let icon = data.current.weather[0].icon;
   let timeStamp = data.current.dt;
   let dayValue = moment.unix(timeStamp).format("ddd. MMM D")
@@ -135,12 +133,12 @@ showWeatherData = (data) => {
 
 let isCardOn = false;
 clearCard = () => {
-  if(isCardOn == true) {
+  if (isCardOn == true) {
     let cardClear = document.getElementsByClassName('card-style')
     console.log(cardClear.length)
     for (let j = 0; j <= cardClear.length; j++) {
-     cardClear[j].remove();
-     
+      cardClear[j].remove();
+
     }
   }
 }
@@ -151,7 +149,7 @@ clearCard = () => {
 let extendedForecast = "";
 showExtendedWeatherData = (data) => {
 
-isCardOn = true;
+  isCardOn = true;
   for (let i = 0; i < 5; i++) {
     let { temp, wind_speed, humidity, feels_like } = data.daily[i];
     let extIcon = data.daily[i].weather[0].icon;
