@@ -4,93 +4,83 @@
   font-family: "Mukta", sans-serif;
   font-family: "Secular One", sans-serif;
 }
-body{
+body {
   background-color: white;
 }
-.page-title{
-  display:flex;
-  justify-content:center;
-  align-items:center;
+.page-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 10px;
-  
 }
 
-
-.spec-search-container{
-display:flex;
-justify-content: flex-end;
-flex-wrap: wrap;
-flex-direction: column ;
-width: 100%;
-gap: .2em;
-
-
+.spec-search-container {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.2em;
 }
-.search{
+.search {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-content: flex-start;
   width: 50px;
   margin: 15px;
-
 }
 
-.city-quick-select{
-display:flex;
-margin-top: .5em;
-justify-content: flex-start;
-align-items: center;
-flex-direction: column;
-gap: 5px;
-width: 100%;
-
+.city-quick-select {
+  display: flex;
+  margin-top: 0.5em;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
 }
 
-.city-info{
-  display:flex;
+.city-info {
+  display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
   margin: 2em;
   gap: 3em;
-
 }
-.city-data{
-  display:flex;
+.city-data {
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 5px;
-
 }
 
-.ext-forc{
+.ext-forc {
   margin-top: 3rem;
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: .2em;
-
+  gap: 0.2em;
 }
-.mid-container{
-  display:flex;
+.mid-container {
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
-
 }
 
 .card-style {
   display: flex;
   margin: 5%;
-  flex-wrap:wrap; 
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap:.5em;
- width: 150px;
+  gap: 0.5em;
+  width: 150px;
   background-color: white;
   padding: 3px;
   box-shadow: 1px 0px 15px 9px grey;
@@ -101,11 +91,10 @@ width: 100%;
   background-color: rgba(223, 223, 223, 0.644);
 }
 
-.card-container{
-  display:flex;
+.card-container {
+  display: flex;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
   flex-direction: row;
-
 }

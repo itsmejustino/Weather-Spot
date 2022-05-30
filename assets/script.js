@@ -24,49 +24,50 @@ searchBtn.addEventListener("click", () => {
 //-----QUICK SEARCH -----
 //Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
 //appends search input
-appendSearchBtn  = () => {
-let cityValue = userSearch.value;
-console.log(cityValue);
-localStorage.setItem("cityName",JSON.stringify(cityValue));
+appendSearchBtn = () => {
+  let cityValue = userSearch.value;
+  console.log(cityValue);
+  localStorage.setItem("cityName", JSON.stringify(cityValue));
   if (cityStorage.indexOf(cityValue) === 1) {
     cityStorage.push(cityValue);
     localStorage.setItem("cityName", cityValue);
   }
 
-  for (let i= 0; i < 7; i++) {
-     let searchedCity = cityStorage[i];
-     let searchedItem = document.getElementById("past-searched-items");
-     let appendCityBtn = document.createElement("button");
-     appendCityBtn.id = "saved-city-btn"
-     appendCityBtn.textContent = searchedCity;
-     searchedItem.append(appendCityBtn);
+  for (let i = 0; i < 7; i++) {
+    let searchedCity = cityStorage[i];
+    let searchedItem = document.getElementById("past-searched-items");
+    let appendCityBtn = document.createElement("button");
+    appendCityBtn.id = "saved-city-btn"
+    appendCityBtn.textContent = searchedCity;
+    searchedItem.append(appendCityBtn);
     //  appendCityBtn.style.textTransform = "capitalize";
-     appendCityBtn.setAttribute("value", searchedCity);
-     appendCityBtn.addEventListener("click", () => {
-    showSearchedWeather();
-  })}
+    appendCityBtn.setAttribute("value", searchedCity);
+    appendCityBtn.addEventListener("click", () => {
+      showSearchedWeather();
+    })
+  }
 }
 
 //checks value of userSearch.value 
 showSearchedWeather = () => {
-  
-  if( typeof userSearch.value === "string"){
+
+  if (typeof userSearch.value === "string") {
     fetch(`${fetchURL}weather?q=${userSearch.value}&appid=${apiKey}`)
-    .then((response) => response.json())
+      .then((response) => response.json())
 
-    .then((data) => {
-      console.log(data.coord.lat, data.coord.lon);
-      getWeatherData(data.coord.lat, data.coord.lon);
-    });
-  }else if(typeof userSearch.value === "number")
-  fetch(`${fetchURL}weather?zip=${userSearch.value},us&appid=${apiKey}`)
-    .then((response) => response.json())
+      .then((data) => {
+        console.log(data.coord.lat, data.coord.lon);
+        getWeatherData(data.coord.lat, data.coord.lon);
+      });
+  } else if (typeof userSearch.value === "number")
+    fetch(`${fetchURL}weather?zip=${userSearch.value},us&appid=${apiKey}`)
+      .then((response) => response.json())
 
-    .then((data) => {
-      console.log(data.coord.lat, data.coord.lon);
-      getWeatherData(data.coord.lat, data.coord.lon);
-    });
-  }
+      .then((data) => {
+        console.log(data.coord.lat, data.coord.lon);
+        getWeatherData(data.coord.lat, data.coord.lon);
+      });
+}
 
 
 getWeatherData = (latitude, longitude) => {
