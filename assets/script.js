@@ -147,7 +147,7 @@ showWeatherData = (data) => {
     document.getElementById("uvi-color").classList.add("okay-uv");
   }
   if (data.current.uvi > 7) {
-    document.getElementById("uvi-color").classList.add("not-good-uv");
+    document.getElementById("uvi-color").classList.add("no-good-uv");
   }
 };
 
