@@ -203,3 +203,28 @@ showExtendedWeatherData = (data) => {
     }
   }
 };
+
+//loads weather data from local storage item on page load
+function loadPreviousWeatherSearch(){
+
+let searchedItem = document.getElementById("past-searched-items");
+let appendCityBtn = document.createElement("button");
+appendCityBtn.id = "saved-city-btn";
+appendCityBtn.textContent = cityStorage;
+userSearch.value = cityStorage
+searchedItem.append(appendCityBtn);
+  appendCityBtn.setAttribute("value", cityStorage);
+  appendCityBtn.addEventListener("click", () => {
+    cityStorage = appendCityBtn.textContent;
+    stringOrInt(userSearch);
+    showSearchedWeather();
+    clearCard();
+    clearHero();
+  });
+}
+
+//checks if there is item in local storage. if there is then is will show weather data from last search
+if(cityStorage.length > 0){
+loadPreviousWeatherSearch();
+showSearchedWeather();
+}
