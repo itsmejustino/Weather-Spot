@@ -216,7 +216,7 @@ searchedItem.append(appendCityBtn);
   appendCityBtn.setAttribute("value", cityStorage);
   appendCityBtn.addEventListener("click", () => {
     cityStorage = appendCityBtn.textContent;
-    stringOrInt(userSearch);
+    stringOrInt(cityStorage);
     showSearchedWeather();
     clearCard();
     clearHero();
@@ -227,4 +227,5 @@ searchedItem.append(appendCityBtn);
 if(cityStorage.length > 0){
 loadPreviousWeatherSearch();
 showSearchedWeather();
+
 }
