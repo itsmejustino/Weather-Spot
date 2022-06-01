@@ -21,8 +21,6 @@ searchBtn.addEventListener("click", () => {
   clearCard();
   clearHero(); 
   appendSearchBtn();
-
-  
 });
 
 function setHistory() {
@@ -39,15 +37,17 @@ function setHistory() {
 //Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
 //appends search input
 appendSearchBtn = () => {
-  console.log(userSearch.value.length);
-  if(userSearch.value.length > 0 && userSearch.value !== cityStorage) {
+  
   let searchedCity = userSearch.value;
   let searchedItem = document.getElementById("past-searched-items");
   let appendCityBtn = document.createElement("button");
   appendCityBtn.id = "saved-city-btn";
   appendCityBtn.textContent = searchedCity;
-  searchedItem.append(appendCityBtn);
   appendCityBtn.setAttribute("value", searchedCity);
+  if(userSearch.value.length < 1 ) {
+    alert(data.cod);
+  }else{
+  searchedItem.append(appendCityBtn);
   appendCityBtn.addEventListener("click", () => {
     userSearch.value = appendCityBtn.textContent;
     stringOrInt(searchedCity);
@@ -55,7 +55,8 @@ appendSearchBtn = () => {
     clearCard();
     clearHero();
   });
-}
+  }
+
 };
 
 stringOrInt = (i) => {
@@ -77,6 +78,10 @@ showSearchedWeather = () => {
       .then((response) => response.json())
 
       .then((data) => {
+        if(data.cod !== 200){
+          alert(data.message);
+
+        }
         console.log(data.coord.lat, data.coord.lon);
         getWeatherData(data.coord.lat, data.coord.lon);
       });
@@ -87,6 +92,10 @@ showSearchedWeather = () => {
       .then((response) => response.json())
 
       .then((data) => {
+        if(data.cod !== 200){
+          alert(data.message);
+
+        }
         console.log(data);
         console.log(data.coord.lat, data.coord.lon);
         getWeatherData(data.coord.lat, data.coord.lon);
@@ -211,7 +220,6 @@ showExtendedWeatherData = (data) => {
 
 //loads weather data from local storage item on page load
 function loadPreviousWeatherSearch(){
-
 let searchedItem = document.getElementById("past-searched-items");
 let appendCityBtn = document.createElement("button");
 appendCityBtn.id = "saved-city-btn";
