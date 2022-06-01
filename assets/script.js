@@ -19,8 +19,10 @@ searchBtn.addEventListener("click", () => {
   showSearchedWeather();
   setHistory();
   clearCard();
-  clearHero();
+  clearHero(); 
   appendSearchBtn();
+
+  
 });
 
 function setHistory() {
@@ -37,6 +39,8 @@ function setHistory() {
 //Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
 //appends search input
 appendSearchBtn = () => {
+  console.log(userSearch.value.length);
+  if(userSearch.value.length > 0 && userSearch.value !== cityStorage) {
   let searchedCity = userSearch.value;
   let searchedItem = document.getElementById("past-searched-items");
   let appendCityBtn = document.createElement("button");
@@ -51,6 +55,7 @@ appendSearchBtn = () => {
     clearCard();
     clearHero();
   });
+}
 };
 
 stringOrInt = (i) => {
@@ -181,7 +186,7 @@ showExtendedWeatherData = (data) => {
       <p>
       Temperature: ${temp.day}°F <br>
       Temperature Feels Like: ${feels_like.day}°F <br>
-      Pressure: ${wind_speed}<br>
+      Wind Speed: ${wind_speed} MPH<br>
        Humidity: ${humidity}%<br>
       </p>
     </div>
@@ -194,7 +199,7 @@ showExtendedWeatherData = (data) => {
     <p>
     Temperature: ${temp.day}°F <br>
     Temperature Feels Like: ${feels_like.day}°F <br>
-    Pressure: ${wind_speed}<br>
+    Wind Speed: ${wind_speed} MPH<br>
      Humidity: ${humidity}%<br>
 
     </p>
@@ -227,5 +232,4 @@ searchedItem.append(appendCityBtn);
 if(cityStorage.length > 0){
 loadPreviousWeatherSearch();
 showSearchedWeather();
-
 }
