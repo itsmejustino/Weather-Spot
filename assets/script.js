@@ -240,7 +240,7 @@ searchedItem.append(appendCityBtn);
 }
 
 //checks if there is item in local storage. if there is then is will show weather data from last search
-if(cityStorage.length > 0){
-loadPreviousWeatherSearch();
-showSearchedWeather();
-}
+// if(cityStorage.length > 0){
+// loadPreviousWeatherSearch();
+// showSearchedWeather();
+// }
