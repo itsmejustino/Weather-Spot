@@ -14,23 +14,18 @@
 
 }
 body {
-  background-image: url('https://github.com/itsmejustino/Weather-Spot/blob/main/assets/daniel-ramirez-q4TfWtnz_xw-unsplash.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  background-color: lightgrey;
+
+  /* background-color: lightgrey; */
 }
-body {
-  background-image: url('w3css.gif');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-}
+
 .page-title {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
+}
+.header-container{
+  background-color: azure;
 }
 
 .spec-search-container {
@@ -41,7 +36,15 @@ body {
   width: 100%;
   gap: 0.2em;
 }
+.bg-img-container {
+  background-image: url('https://github.com/itsmejustino/Weather-Spot/blob/main/assets/daniel-ramirez-q4TfWtnz_xw-unsplash.jpg?raw=true');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  box-shadow: 4px 4px 8px 9px rgba(128, 128, 128, 0.685);
+}
 .search {
+  
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -95,6 +98,7 @@ body {
   width: 750px;
   margin-right: 10px;
   margin-left:10px;
+  margin-bottom: 15%;
 }
 .hero-container {
   display: flex;

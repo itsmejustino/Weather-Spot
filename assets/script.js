@@ -41,6 +41,7 @@ appendSearchBtn = () => {
   let searchedItem = document.getElementById("past-searched-items");
   let appendCityBtn = document.createElement("button");
   appendCityBtn.type = "button"
+  appendCityBtn.classList.add("btn", "btn-secondary");
   appendCityBtn.id = "saved-city-btn";
   appendCityBtn.textContent = searchedCity;
   appendCityBtn.setAttribute("value", searchedCity);
@@ -222,6 +223,8 @@ showExtendedWeatherData = (data) => {
 function loadPreviousWeatherSearch(){
 let searchedItem = document.getElementById("past-searched-items");
 let appendCityBtn = document.createElement("button");
+appendCityBtn.type = "button"
+appendCityBtn.classList.add("btn", "btn-secondary");
 appendCityBtn.id = "saved-city-btn";
 appendCityBtn.textContent = cityStorage;
 userSearch.value = cityStorage
