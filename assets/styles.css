@@ -4,7 +4,8 @@
   font-family: "Mukta", sans-serif;
   font-family: "Secular One", sans-serif;
 }
-#saved-city-btn{
+
+#saved-city-btn {
   margin-left: 35px;
   display: flex;
   justify-content: center;
@@ -13,10 +14,12 @@
   padding-right: 50px;
 
 }
+
 body {
 
   /* background-color: lightgrey; */
 }
+
 
 .page-title {
   display: flex;
@@ -24,8 +27,17 @@ body {
   align-items: center;
   margin-top: 10px;
 }
-.header-container{
-  background-color: azure;
+
+#gif-container {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  fill: none;
+  text-align: center;
+}
+
+.header-container {
+  display: flex;
 }
 
 .spec-search-container {
@@ -36,6 +48,7 @@ body {
   width: 100%;
   gap: 0.2em;
 }
+
 .bg-img-container {
   background-image: url('https://github.com/itsmejustino/Weather-Spot/blob/main/assets/daniel-ramirez-q4TfWtnz_xw-unsplash.jpg?raw=true');
   background-repeat: no-repeat;
@@ -43,14 +56,30 @@ body {
   background-position: center;
   box-shadow: 4px 4px 8px 9px rgba(128, 128, 128, 0.685);
 }
+
+#collapse-btn {
+  margin-top: 3%;
+}
+
+#search-collapse {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 .search {
-  
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-content: flex-start;
   width: 50px;
   margin: 15px;
+}
+
+.card-c-container {
+  margin-bottom: 10%;
 }
 
 .city-quick-select {
@@ -70,6 +99,7 @@ body {
   margin: 2em;
   gap: 3em;
 }
+
 .city-data {
   display: flex;
   justify-content: center;
@@ -87,6 +117,7 @@ body {
   align-items: center;
   gap: 0.2em;
 }
+
 .mid-container {
   display: flex;
   justify-content: center;
@@ -94,16 +125,17 @@ body {
   gap: 5px;
   background-color: lightblue;
   box-shadow: 1px 0px 15px 9px grey;
-  border-radius:15px;
+  border-radius: 15px;
   width: 750px;
   margin-right: 10px;
-  margin-left:10px;
+  margin-left: 10px;
   margin-bottom: 15%;
 }
+
 .hero-container {
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 
 }
 
@@ -132,7 +164,7 @@ body {
   flex-direction: row;
 }
 
-.good-uv{
+.good-uv {
   background-color: lightgreen;
   border-radius: 5px;
   padding-right: 2px;
@@ -140,7 +172,7 @@ body {
   margin-left: 2px;
 }
 
-.okay-uv{
+.okay-uv {
   background-color: orange;
   border-radius: 10px;
   width: 25px;
@@ -149,7 +181,7 @@ body {
 }
 
 
-.no-good-uv{
+.no-good-uv {
   background-color: orangered;
   border-radius: 10px;
   width: 25px;
@@ -157,9 +189,9 @@ body {
   margin-left: 2px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
