@@ -17,10 +17,10 @@ let cityStorage = JSON.parse(localStorage.getItem("cityName")) || [];
 searchBtn.addEventListener("click", () => {
   stringOrInt(userSearch.value);
   showSearchedWeather();
-  setHistory();
   clearCard();
   clearHero(); 
   appendSearchBtn();
+  setHistory();
 });
 
 function setHistory() {
@@ -37,16 +37,16 @@ function setHistory() {
 //Quick search of 5 cities that will fetch weather data to display HERO & eXTENDED FORECAST
 //appends search input
 appendSearchBtn = () => {
-  
   let searchedCity = userSearch.value;
   let searchedItem = document.getElementById("past-searched-items");
   let appendCityBtn = document.createElement("button");
+  appendCityBtn.type = "button"
   appendCityBtn.id = "saved-city-btn";
   appendCityBtn.textContent = searchedCity;
   appendCityBtn.setAttribute("value", searchedCity);
-  if(userSearch.value.length < 1 ) {
-    alert(data.cod);
-  }else{
+  console.log(cityStorage)
+  console.log(searchedCity);
+  if(userSearch.value.length > 1){
   searchedItem.append(appendCityBtn);
   appendCityBtn.addEventListener("click", () => {
     userSearch.value = appendCityBtn.textContent;
